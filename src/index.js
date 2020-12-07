@@ -33,8 +33,6 @@ module.exports = ({types: t}) => ({
             ...this.opts
         }
 
-        console.log(process.env.RN_PROPS_ENV)
-
         const babelMode = process.env.RN_PROPS_ENV || this.opts.profile ||  process.env.NODE_ENV || 'local'
 
         propsenv({
