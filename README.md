@@ -23,6 +23,22 @@ As early as possible in your application, require and configure propsenv.
 }
 ```
 
+```
+{
+  "plugins": [
+    ["module:react-native-propsenv", {
+        moduleName: '@env',
+        path: './env/',
+        whitelist: ['TEST'],
+        blacklist: ['TOKEN'],
+        allowUndefined: true,
+        debug: true,
+        profile: development,
+    }]
+  ]
+}
+```
+
 Create a `env_<env>.properties` file in the root/env/ directory of your project. Add environment-specific variables on new lines in the form of `NAME=VALUE`. For example:
 
 ```
@@ -44,6 +60,14 @@ env_prod.properties
 Then execute your start script before with NODE_ENV=<env>, you will get the configured variables in to env_<env>.properties file by process.env.HOST, process.env.USER, process.env.PASS
 
 ```
-NODE_ENV=test node your_script.js
+RN_PROPS_ENV=test node your_script.js
 ```
 
+Use in your code
+
+```
+import {HOST, USER} from '@env'
+
+console.log('HOST', HOST)
+console.log('USER', USER)
+```

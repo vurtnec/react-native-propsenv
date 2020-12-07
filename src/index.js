@@ -15,6 +15,8 @@ function parsePropsenvFile(path, verbose = false) {
     return propsenv.parse(content)
 }
 
+// console.log(`[react-native-propsenv][DEBUG] Current environment profile : ${message}`)
+
 module.exports = ({types: t}) => ({
     name: 'propsenv-import',
 
@@ -27,10 +29,13 @@ module.exports = ({types: t}) => ({
             // safe: false,
             allowUndefined: true,
             debug: false,
+            profile: null,
             ...this.opts
         }
 
-        const babelMode = process.env.NODE_ENV || 'local'
+        console.log(process.env.RN_PROPS_ENV)
+
+        const babelMode = process.env.RN_PROPS_ENV || this.opts.profile ||  process.env.NODE_ENV || 'local'
 
         propsenv({
             profile: babelMode,
