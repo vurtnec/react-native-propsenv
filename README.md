@@ -71,3 +71,35 @@ import {HOST, USER} from '@env'
 console.log('HOST', HOST)
 console.log('USER', USER)
 ```
+
+## Troubleshooting
+
+if you are meet the babel production cannot use issue, please configure the babel file as below:
+
+```
+module.exports = {
+  "presets": [
+    "module:metro-react-native-babel-preset"
+  ],
+  "plugins": [
+    ["module:react-native-propsenv", {
+      debug: false,
+      path: './env/',
+      moduleName: '@env',
+      profile: "production"
+    }]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        ["module:react-native-propsenv", {
+          debug: false,
+          path: './env/',
+          moduleName: '@env',
+          profile: "development"
+        }]
+      ]
+    }
+  }
+}
+```
