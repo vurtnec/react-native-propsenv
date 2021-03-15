@@ -1,7 +1,5 @@
 const propsenv = require('propsenv')
 
-// console.log(`[react-native-propsenv][DEBUG] Current environment profile : ${message}`)
-
 module.exports = ({types: t}) => ({
     name: 'propsenv-import',
 
@@ -18,14 +16,19 @@ module.exports = ({types: t}) => ({
             ...this.opts
         }
 
-        const babelMode = process.env.RN_PROPS_ENV || this.opts.profile ||  process.env.NODE_ENV || 'local'
+        const babelMode = process.env.RN_PROPS_ENV || this.opts.profile || process.env.NODE_ENV || 'local'
 
-        propsenv({
+        const result = propsenv({
             profile: babelMode,
             path: this.opts.path,
             debug: this.opts.debug
         })
-        this.env = process.env
+
+        this.env = {
+            ...process.env,
+            ...result
+        }
+
     },
 
     visitor: {

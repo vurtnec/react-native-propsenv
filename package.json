@@ -1,6 +1,6 @@
 {
   "name": "react-native-propsenv",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "About Support load multiple environment variables by properties file for react native",
   "main": "src/index.js",
   "scripts": {
@@ -24,6 +24,6 @@
   "license": "ISC",
   "readmeFilename": "README.md",
   "dependencies": {
-    "propsenv": "^1.0.2"
+    "propsenv": "^1.0.3"
   }
 }
